@@ -119,3 +119,94 @@ public:
     } 
 
     // delete by position
+    void delete_pos(int position) {
+
+        if (!head) return;
+
+        Node* temp = head;
+
+        for (int i = 0; i < position && temp; i++) 
+            temp = temp->next;
+
+        if (!temp) return;
+
+        if (temp->prev)
+            temp->prev->next = temp->next;
+        else
+            head = temp->next;
+
+        if (temp->next)
+            temp->next->prev = temp->prev;
+        else
+            tail = temp->prev;
+        
+        delete temp;
+    }
+
+    void print() {
+
+        Node* current = head;
+
+        if (!current) {
+            cout << "List empty\n";
+            return;
+        }
+
+        while (current) {
+            cout << current->data << " ";
+            current = current->next;
+        }
+
+        cout << endl;
+    } 
+
+    void print_reverse() {
+
+        Node* current = tail;
+
+        if (!current) {
+            cout << "List empty\n";
+            return;
+        }
+        while (current) {
+            cout << current->data << " ";
+            current = current->prev;
+        }
+
+        cout << endl;
+    }
+
+    ~DoublyLinkedList() {
+
+        while (head) {
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
+};
+
+int main() {
+    
+    srand(time(0));
+
+    DoublyLinkedList list;
+
+    int size = rand() % (MAX_LS - MIN_LS + 1) + MIN_LS; 
+
+    for (int i = 0; i < size; i++)
+        list.push_back(rand() % (MAX_NR - MIN_NR +1) + MIN_NR);
+
+    cout << "Initial list:\n";
+    list.print();
+
+    cout << "Reverse:\n";
+    list.print_reverse();
+
+    cout << "\nTesting pop_front()\n";
+    list.pop_front();
+    list.print();
+
+    cout << "\nTesting pop_back()\n";
+    list.pop_front();
+}
