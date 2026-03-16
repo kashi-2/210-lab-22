@@ -207,6 +207,4 @@ int main() {
     list.pop_front();
     list.print();
 
-    cout << "\nTesting pop_back()\n";
-    list.pop_front();
-}
+  
