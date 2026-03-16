@@ -207,4 +207,25 @@ int main() {
     list.pop_front();
     list.print();
 
+    cout << "\nTesting pop_back()\n";
+    list.pop_back();
+    list.print();
+
+    cout << "\nTesting delete_pos(2)\n";
+    list.delete_pos(2);
+    list.print();
+
+    cout << "\nTesting delete_val()\n";
+    int value = rand() % (MAX_NR - MIN_NR + 1) + MIN_NR;
+    cout << "Trying to delete value: " << value << endl;
+    list.delete_val(value);
+    list.print();
+
+    cout << "\nDeleting entire list\n";
+    list.~DoublyLinkedList();
+
+    cout << "List after deletion\n";
+    list.print();
   
+    return 0;
+}
