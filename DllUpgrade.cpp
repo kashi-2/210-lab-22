@@ -60,3 +60,62 @@ public:
             head = newNode;
         }
     }
+
+    // delete head node 
+    void pop_front() {
+
+        if (!head) return;
+
+        Node* temp = head;
+
+        if (head == tail)
+            head = tail = nullptr;
+        else {
+            head = head->next;
+            head->prev = nullptr;
+        }
+        delete temp;
+    }
+
+    // delete tail node
+    void pop_back() {
+
+        if (!tail) return;
+
+        Node* temp = tail;
+
+        if (head == tail)
+            head = tail = nullptr;
+        else {
+            tail = tail->prev;
+            tail->next = nullptr;
+        }
+        delete temp;
+    }
+
+    // delete by value 
+    void delete_val(int value) {
+
+        if (!head) return;
+
+        Node* temp = head;
+
+        while (temp && temp->data != value) 
+            temp = temp->next;
+
+        if(!temp) return;
+
+        if (temp->prev)
+            temp->prev->next = temp->next;
+        else
+            head = temp->next;
+        
+        if (temp->next)
+            temp->next->prev = temp->prev;
+        else 
+            tail = temp->prev;
+
+        delete temp;
+    } 
+
+    // delete by position
